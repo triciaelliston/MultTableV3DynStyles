@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Multiplication Table</title>
+	<!-- note that here we're linking to a CDN version of Angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<script src="./myApp.js"></script>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body >
+	<!-- notice how we moved the controller to a parent DIV container -->
+	<div ng-controller="MultiplicationCtrl" initial-number-limit="10">
+		<input type="number" ng-model="numberLimit" placeholder="Enter a number" />		
+		<table>
+			<tr ng-repeat="numberA in numbers">
+				<td ng-repeat="numberB in numbers"
+					ng-mouseleave="clearActiveFactors()" 
+					ng-mouseover="setActiveFactors(numberA, numberB)"
+					ng-class="{hover: matchesFactor(numberA, numberB)}">
+					{{ compute(numberA, numberB) }}
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
